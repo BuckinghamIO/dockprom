@@ -20,7 +20,7 @@ pipeline {
       steps {
         sshagent (credentials: ['personal-ssh-key']) {
           sh 'ls -lah'
-          sh 'scp -o StrictHostKeyChecking=no -r dockprom root@srv1.buckingham.io:/home/'
+          sh 'scp -o StrictHostKeyChecking=no -r . root@srv1.buckingham.io:/home/dockprom'
           sh 'ssh -o StrictHostKeyChecking=no root@srv1.buckingham.io uname -a'
           sh 'ls -lah'
           sh 'ADMIN_USER=admin ADMIN_PASSWORD=admin docker-compose up -d'
