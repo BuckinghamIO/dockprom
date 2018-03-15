@@ -18,7 +18,7 @@ pipeline {
 
     stage('Deploy to host') {
       steps {
-        sshagent (credentials: ['srv1.buckingham.io']) {
+        sshagent (credentials: ['personal-ssh-key']) {
           sh 'ls -lah'
           sh 'scp -o StrictHostKeyChecking=no -r dockprom root@srv1.buckingham.io:/home/'
           sh 'ssh -o StrictHostKeyChecking=no srv1.buckingham.io uname -a'
