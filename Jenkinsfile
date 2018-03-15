@@ -27,4 +27,13 @@ pipeline {
       }
     }
   }
+  post {
+      always {
+        sh 'echo "SHOULD MESSAGE SLACK HERE"'
+      }
+      failure {
+        sh "docker login -u=$REGISTRY_AUTH_USR -p=$REGISTRY_AUTH_PSW $REGISTRY_URL"
+        sh 'docker-compose -f docker-compose.yml down'
+      }
+  }
 }
